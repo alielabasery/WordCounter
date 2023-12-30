@@ -19,9 +19,10 @@ public class Solution {
         int maxMoves = Integer.MAX_VALUE;
 
         for (char ch : targetWord.toCharArray()) {
-            if (!charCounts.containsKey(ch)) {
-                return 0; // Return 0 for characters not present in the original string
+            if (!charCounts.containsKey(ch) || charCounts.get(ch) == 0) {
+                return 0; // Return 0 for characters not present or exhausted in the original string
             }
+            charCounts.put(ch, charCounts.get(ch) - 1);
             maxMoves = Math.min(maxMoves, charCounts.get(ch));
         }
 
